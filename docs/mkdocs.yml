@@ -1,4 +1,5 @@
-site_name: My Notes
+site_name: Adaptive Phase-Field Fracture
+site_description: A repository for the adaptive phase-field fracture method.
 theme:
   name: readthedocs
   highlightjs: true
