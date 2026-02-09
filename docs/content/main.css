@@ -1,0 +1,14 @@
+/* Hide the "Built with ... theme ..." footer text without removing nav buttons */
+.wy-nav-content footer {
+  font-size: 0;              /* hides raw text nodes */
+}
+
+.wy-nav-content footer .rst-footer-buttons {
+  font-size: 16px;           /* bring buttons back */
+}
+
+.wy-nav-content footer hr,
+.wy-nav-content footer div[role="contentinfo"] {
+  display: none;             /* remove separator and the contentinfo block if present */
+}
+
