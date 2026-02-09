@@ -4,6 +4,8 @@ theme:
   highlightjs: true
   logo: img/logo.svg
 
+docs_dir: content
+
 plugins:
   - search
   - mkdocstrings:

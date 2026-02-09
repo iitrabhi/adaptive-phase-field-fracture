@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "export": "rm -rf ../docs && mkdocs build && mv site ../docs",
+    "export": "mkdocs build",
     "dev": "mkdocs serve"
   }
 }
