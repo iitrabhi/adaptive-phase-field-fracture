@@ -429,3 +429,5 @@ workspace.json
 *.med
 *.msh
 /docs/site
+node_modules/
+cache/

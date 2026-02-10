@@ -1,0 +1,103 @@
+/* https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css */
+:root {
+  --vp-font-family-base: "Inter";
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #bd34fe 30%,
+    #41d1ff
+  );
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #bd34fe 50%,
+    #47caff 50%
+  );
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+html {
+  letter-spacing: -0.03em;
+}
+
+
+.tagline {
+ font-size: 18px !important;
+ line-height: 1.875rem !important;
+ font-weight: 400 !important;
+ text-align: left !important;
+}
+
+.name.clip {
+  font-size: 56px !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+  letter-spacing: -0.06rem !important;
+}
+
+.image {
+    margin: 0 !important;
+    margin-bottom: 40px !important;
+  }
+
+img{
+border-radius: 8px;
+}
+
+.logo{
+  border-radius: 0px;
+}
+
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+
+}
+
+.VPHero .VPImage {
+  filter: drop-shadow(-2px 4px 6px rgba(0, 0, 0, 0.2));
+  padding: 18px;
+}
+.home-wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    padding: 32px 48px 96px;
+    max-width: 1152px;
+}
+
+iframe {
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+iframe[src*="youtube.com"],
+iframe[src*="vimeo.com"] {
+  aspect-ratio: 16 / 9;
+}
+
+
+/* .vitepress/theme/custom.css */
+/* Dark mode: override everywhere via html.dark */
+/*👉html.dark {
+  ➡ Main page backgrounds ⬅
+  --vp-c-bg:       #0C1C29; ➡ Main background ⬅
+  --vp-c-bg-alt:   #080A0D; ➡ Sidebar ⬅
+  --vp-c-bg-soft:  #080A0D; ➡ Card background ⬅
+  --vp-c-divider:  #505b6169; ➡ Divider ⬅
+}👈*/
+
+/*👉html.dark {
+  --vp-c-bg:       #212A38;
+  --vp-c-bg-alt:   #2b384b;  
+  --vp-c-bg-soft:  #2b384b;   
+  --vp-c-divider:  #6A747969;
+}👈*/
