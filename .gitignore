@@ -429,3 +429,5 @@ workspace.json
 *.med
 *.msh
 /docs/site
+/docs/node_modules
+/docs/.vitepress/cache
