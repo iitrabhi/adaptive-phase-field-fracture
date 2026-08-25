@@ -106,7 +106,6 @@ def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
     final_displacement = None
 
     output_file = _prepare_output(config, communicator)
-    print(config.solver.outer_tolerance)
     while solve_error > config.solver.outer_tolerance:
         if config.adaptivity.enabled:
             adaptivity_converged = False

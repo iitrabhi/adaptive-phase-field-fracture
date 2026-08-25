@@ -89,7 +89,7 @@ outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
 
 [output]
-directory = "output/adaptive/5.0"
+directory = "output/adaptive/"
 filename = "output.xdmf"
 write_every = 1
 write_damage = true

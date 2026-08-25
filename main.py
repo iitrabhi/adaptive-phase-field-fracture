@@ -34,7 +34,6 @@ def main() -> None:
     communicator = MPI.comm_world
     mesh = load_mesh(config, communicator)
 
-    print("Running adaptive phase-field solver with configuration:")
     run_adaptive(mesh, config, communicator)
 
 
