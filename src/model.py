@@ -102,7 +102,7 @@ def get_energy(displacement, damage, history_space, config: SimulationConfig):
     )
 
     critical_stress = config.fracture.critical_stress
-    energy_expression = config.fracture.zeta * (
+    energy_expression =  (
         (stress_plus[0, 0] / critical_stress) ** 2
         + (stress_plus[1, 1] / critical_stress) ** 2
         + (stress_plus[2, 2] / critical_stress) ** 2
@@ -114,7 +114,7 @@ def get_energy(displacement, damage, history_space, config: SimulationConfig):
         0,
         energy_expression,
     )
-    return energy_expression
+    return config.fracture.zeta * energy_expression
 
 
 def displacement_forms(
@@ -137,7 +137,7 @@ def displacement_forms(
     ) * dx
 
     load_switch = conditional(
-        gt(old_damage, 1.0e-3),
+        gt(old_damage, 0.6),
         0.0,
         1.0,
     )
