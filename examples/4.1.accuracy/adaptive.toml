@@ -25,10 +25,10 @@ freshwater_density = 1000.0
 seawater_density = 1020.0
 
 [fracture]
-length_scale = 10.0
+length_scale = 20.0
 critical_stress = 0.1185e6
-energy_threshold = 15
-zeta = 5.0
+energy_threshold = 0.5
+zeta = 30.0
 residual_stiffness = 1.0e-4
 
 [loads.gravity]
@@ -38,7 +38,7 @@ direction = [0.0, 0.0, -1.0]
 
 [loads.hydrostatic]
 enabled = true
-water_height_ratio = 0.0
+water_height_ratio = 0.5
 boundary = "right"
 marker = 1
 density_source = "seawater"
@@ -48,7 +48,7 @@ degree = 1
 
 [adaptivity]
 enabled = true
-target_hmin = 2.5
+target_hmin = 5
 damage_threshold = 0.2
 
 
