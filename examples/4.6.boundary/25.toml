@@ -1,0 +1,109 @@
+[problem]
+name = "Kilometer-scale 3D glacier 30-crevasse restart with released back boundary"
+
+[mesh]
+path = "../../data/mesh/11_Lx1500_30C.xdmf"
+
+[adaptivity]
+enabled = true
+target_hmin = 1.25
+damage_threshold = 0.2
+
+[loads.hydrostatic]
+enabled = true
+water_height_ratio = 0.5
+boundary = "right"
+marker = 1
+density_source = "seawater"
+component = 0
+sign = -1.0
+degree = 1
+
+[fracture]
+length_scale = 5.0
+energy_threshold = 0.5
+zeta = 30.0
+critical_stress = 0.1185e6
+residual_stiffness = 1.0e-4
+
+[write_checkpoint]
+enabled = false
+
+[restart_checkpoint]
+enabled = true
+filename = "./output/24/checkpoint.h5"
+
+[geometry]
+Lx = 1500.0
+Ly = 750.0
+Lz = 125.0
+
+[material]
+youngs_modulus = 9.5e9
+poissons_ratio = 0.35
+ice_density = 917.0
+freshwater_density = 1000.0
+seawater_density = 1020.0
+
+[loads.gravity]
+enabled = true
+acceleration = 9.81
+direction = [0.0, 0.0, -1.0]
+
+[finite_element]
+displacement_family = "CG"
+displacement_degree = 1
+damage_family = "CG"
+damage_degree = 1
+history_family = "DG"
+history_degree = 0
+
+[[boundary_conditions]]
+name = "bottom_roller"
+boundary = "bottom"
+type = "dirichlet"
+component = 2
+value = 0.0
+
+[[boundary_conditions]]
+name = "left_roller"
+boundary = "left"
+type = "dirichlet"
+component = 0
+value = 0.0
+
+[[boundary_conditions]]
+name = "front_roller"
+boundary = "front"
+type = "dirichlet"
+component = 1
+value = 0.0
+
+[[boundary_conditions]]
+name = "back_roller"
+boundary = "back"
+type = "dirichlet"
+component = 1
+value = 0.0
+
+[solver]
+linear_solver = "gmres"
+preconditioner = "hypre_euclid"
+projection_linear_solver = "gmres"
+projection_preconditioner = "hypre_euclid"
+outer_tolerance = 1.0e-4
+norm_zero_tolerance = 1.0e-14
+
+[output]
+directory = "./output/25/"
+filename = "output.xdmf"
+write_every = 1
+write_damage = true
+write_displacement = true
+functions_share_mesh = true
+rewrite_function_mesh = true
+flush_output = true
+
+[logging]
+level = "ERROR"
+garbage_collect_every = 5

@@ -1,40 +1,13 @@
 [problem]
-name = "3D glacier stress-based phase-field fracture"
+name = "3D glacier two-crevasse interaction, S=25 m"
 
 [mesh]
-path = "mesh/adaptive/mesh.xdmf"
+path = "../../data/mesh/04_Lx500_2C_S25.xdmf"
 
-[geometry]
-Lx = 500.0
-Ly = 750.0
-Lz = 125.0
-
-[finite_element]
-displacement_family = "CG"
-displacement_degree = 1
-damage_family = "CG"
-damage_degree = 1
-history_family = "DG"
-history_degree = 0
-
-[material]
-youngs_modulus = 9.5e9
-poissons_ratio = 0.35
-ice_density = 917.0
-freshwater_density = 1000.0
-seawater_density = 1020.0
-
-[fracture]
-length_scale = 10.0
-energy_threshold = 0.5
-zeta = 30.0
-critical_stress = 0.1185e6
-residual_stiffness = 1.0e-4
-
-[loads.gravity]
+[adaptivity]
 enabled = true
-acceleration = 9.81
-direction = [0.0, 0.0, -1.0]
+target_hmin = 2.5
+damage_threshold = 0.2
 
 [loads.hydrostatic]
 enabled = true
@@ -46,11 +19,44 @@ component = 0
 sign = -1.0
 degree = 1
 
-[adaptivity]
-enabled = true
-target_hmin = 2.5
-damage_threshold = 0.2
+[fracture]
+length_scale = 10.0
+energy_threshold = 0.5
+zeta = 30.0
+critical_stress = 0.1185e6
+residual_stiffness = 1.0e-4
 
+[write_checkpoint]
+enabled = false
+
+[restart_checkpoint]
+enabled = false
+filename = "./output/24/checkpoint.h5"
+
+[geometry]
+Lx = 500.0
+Ly = 750.0
+Lz = 125.0
+
+[material]
+youngs_modulus = 9.5e9
+poissons_ratio = 0.35
+ice_density = 917.0
+freshwater_density = 1000.0
+seawater_density = 1020.0
+
+[loads.gravity]
+enabled = true
+acceleration = 9.81
+direction = [0.0, 0.0, -1.0]
+
+[finite_element]
+displacement_family = "CG"
+displacement_degree = 1
+damage_family = "CG"
+damage_degree = 1
+history_family = "DG"
+history_degree = 0
 
 [[boundary_conditions]]
 name = "bottom_roller"
@@ -80,8 +86,6 @@ type = "dirichlet"
 component = 1
 value = 0.0
 
-
-
 [solver]
 linear_solver = "gmres"
 preconditioner = "hypre_euclid"
@@ -91,7 +95,7 @@ outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
 
 [output]
-directory = "output/adaptive/"
+directory = "./output/11/"
 filename = "output.xdmf"
 write_every = 1
 write_damage = true
