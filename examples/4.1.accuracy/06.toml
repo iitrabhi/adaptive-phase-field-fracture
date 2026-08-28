@@ -31,7 +31,7 @@ enabled = true
 filename = "./output/06/checkpoint.h5"
 
 [restart_checkpoint]
-enabled = true
+enabled = false
 filename = "./output/06/checkpoint.h5"
 
 [geometry]
