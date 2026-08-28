@@ -10,8 +10,8 @@ target_hmin = 1.25
 damage_threshold = 0.2
 
 [loads.hydrostatic]
-enabled = true
-water_height_ratio = 0.5
+enabled = false
+water_height_ratio = 0.0
 boundary = "right"
 marker = 1
 density_source = "seawater"
@@ -21,7 +21,7 @@ degree = 1
 
 [fracture]
 length_scale = 5.0
-energy_threshold = 1.0
+energy_threshold = 10.0
 zeta = 2.0
 critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
