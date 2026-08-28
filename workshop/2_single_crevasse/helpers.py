@@ -3,7 +3,7 @@ import ufl as ufl
 
 
 class MaterialModel:
-    def __init__(self, E0=9500e6, nu=0.35, rho=917 * 9.81, stress_c=0.1185e6, ci=1):
+    def __init__(self, E0=9500e6, nu=0.35, rho=917 * 9.81, stress_c=0.1185e6, ci=1, threshold=15):
         # Initialize material parameters
         self.E0 = E0
         self.nu = nu
@@ -14,6 +14,7 @@ class MaterialModel:
         self.mu = self.E0 / (2 * (1 + self.nu))
         self.lmbda = self.E0 * self.nu / ((1 + self.nu) * (1 - 2 * self.nu))
         self.ci = ci
+        self.threshold = threshold
 
     def strain(self, u):
         return 0.5 * (grad(u) + grad(u).T)
@@ -43,8 +44,7 @@ class MaterialModel:
         )
         cdf_expr = ufl.Max(cdf_expr, 0)
         # Apply the threshold condition
-        threshold = 15  # Set the threshold value
-        cdf_expr = ufl.conditional(ufl.le(cdf_expr, threshold), 0, cdf_expr)
+        cdf_expr = ufl.conditional(ufl.le(cdf_expr, self.threshold), 0, cdf_expr)
 
         return cdf_expr
 
