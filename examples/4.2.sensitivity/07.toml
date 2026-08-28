@@ -2,7 +2,7 @@
 name = "3D glacier phase-field length-scale sensitivity, ell=5 m"
 
 [mesh]
-path = "../../data/mesh/02_Lx500_1C_AD.xdmf"
+path = "../../data/mesh/02/Lx500_1C_AD.xdmf"
 
 [adaptivity]
 enabled = true

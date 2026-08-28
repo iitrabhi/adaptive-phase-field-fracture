@@ -2,7 +2,7 @@
 name = "3D glacier opposing ten-crevasse competitive growth, S=70 m"
 
 [mesh]
-path = "../../data/mesh/09_Lx500_10C_S70.xdmf"
+path = "../../data/mesh/09/Lx500_10C_S70.xdmf"
 
 [adaptivity]
 enabled = true

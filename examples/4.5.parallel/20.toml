@@ -2,7 +2,7 @@
 name = "3D glacier RAMR strong scaling, 8 MPI processes"
 
 [mesh]
-path = "../../data/mesh/10_Lx500_1C_NA_4M.xdmf"
+path = "../../data/mesh/10/Lx500_1C_NA_4M.xdmf"
 
 [adaptivity]
 enabled = true

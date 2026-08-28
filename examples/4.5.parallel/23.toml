@@ -2,7 +2,7 @@
 name = "Kilometer-scale 3D glacier 30-crevasse field simulation"
 
 [mesh]
-path = "../../data/mesh/11_Lx1500_30C.xdmf"
+path = "../../data/mesh/11/Lx1500_30C.xdmf"
 
 [adaptivity]
 enabled = true

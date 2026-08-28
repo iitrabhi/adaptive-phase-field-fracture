@@ -2,7 +2,7 @@
 name = "3D glacier two-crevasse interaction, S=100 m"
 
 [mesh]
-path = "../../data/mesh/06_Lx500_2C_S100.xdmf"
+path = "../../data/mesh/06/Lx500_2C_S100.xdmf"
 
 [adaptivity]
 enabled = true
