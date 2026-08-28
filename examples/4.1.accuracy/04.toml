@@ -1,5 +1,5 @@
 [problem]
-name = "3D glacier single-crevasse adaptive simulation, hw=0"
+name = "3D glacier single-crevasse adaptive simulation, hw=0.5H"
 
 [mesh]
 path = "../../data/mesh/02/Lx500_1C_AD.xdmf"
