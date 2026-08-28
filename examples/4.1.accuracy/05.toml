@@ -2,7 +2,7 @@
 name = "3D glacier single-crevasse adaptive simulation, hw=0.25H"
 
 [mesh]
-path = "../../data/mesh/02_Lx500_1C_AD.xdmf"
+path = "../../data/mesh/02/Lx500_1C_AD.xdmf"
 
 [adaptivity]
 enabled = true
@@ -21,8 +21,8 @@ degree = 1
 
 [fracture]
 length_scale = 10.0
-energy_threshold = 0.5
-zeta = 30.0
+energy_threshold = 5.0
+zeta = 1.0
 critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
 
