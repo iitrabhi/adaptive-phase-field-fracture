@@ -27,6 +27,17 @@ class RunResult:
     final_error: float
 
 
+@dataclass
+class CheckpointState:
+    mesh: Any
+    displacement: Any
+    damage: Any
+    history: Any
+    time_index: int
+    outer_iteration: int
+    solve_error: float
+
+
 def mprint(communicator, *values) -> None:
     if communicator.Get_rank() == 0:
         output = ""
@@ -94,16 +105,101 @@ def _prepare_output(config: SimulationConfig, communicator):
     return output_file
 
 
-def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
-    spaces = make_spaces(mesh, config)
-    displacement_state, damage_state, history_state = _make_state(spaces)
+def write_checkpoint(
+    mesh,
+    displacement,
+    damage,
+    history,
+    time_index: int,
+    outer_iteration: int,
+    solve_error: float,
+    config: SimulationConfig,
+    communicator,
+) -> None:
+    """Atomically replace the rolling checkpoint with the current state."""
+    checkpoint_path = config.write_checkpoint_path
+    temporary_path = checkpoint_path.with_name(checkpoint_path.name + ".tmp")
 
+    if communicator.Get_rank() == 0:
+        checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+        if temporary_path.exists():
+            temporary_path.unlink()
+    MPI.barrier(communicator)
+
+    with HDF5File(communicator, str(temporary_path), "w") as checkpoint_file:
+        checkpoint_file.write(mesh, "/mesh")
+        checkpoint_file.write(displacement, "/displacement")
+        checkpoint_file.write(damage, "/damage")
+        checkpoint_file.write(history, "/history")
+        attributes = checkpoint_file.attributes("/")
+        attributes["time_index"] = int(time_index)
+        attributes["outer_iteration"] = int(outer_iteration)
+        attributes["solve_error"] = float(solve_error)
+
+    MPI.barrier(communicator)
+    if communicator.Get_rank() == 0:
+        os.replace(str(temporary_path), str(checkpoint_path))
+    MPI.barrier(communicator)
+
+
+def load_checkpoint(config: SimulationConfig, communicator) -> CheckpointState:
+    """Load the adaptive mesh, fields, and iteration metadata from a checkpoint."""
+    checkpoint_path = config.restart_checkpoint_path
+    if not checkpoint_path.is_file():
+        raise FileNotFoundError("Checkpoint file not found: {}".format(checkpoint_path))
+
+    mesh = Mesh()
+    with HDF5File(communicator, str(checkpoint_path), "r") as checkpoint_file:
+        checkpoint_file.read(mesh, "/mesh", False)
+        spaces = make_spaces(mesh, config)
+        displacement, damage, history = _make_state(spaces)
+        checkpoint_file.read(displacement, "/displacement")
+        checkpoint_file.read(damage, "/damage")
+        checkpoint_file.read(history, "/history")
+        attributes = checkpoint_file.attributes("/")
+        time_index = int(attributes["time_index"])
+        outer_iteration = int(attributes["outer_iteration"])
+        solve_error = float(attributes["solve_error"])
+
+    return CheckpointState(
+        mesh=mesh,
+        displacement=displacement,
+        damage=damage,
+        history=history,
+        time_index=time_index,
+        outer_iteration=outer_iteration,
+        solve_error=solve_error,
+    )
+
+
+def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
     process = psutil.Process(os.getpid())
     start_time = time.time()
-    time_index = 0
-    outer_iteration = 0
-    solve_error = 1.0
-    final_displacement = None
+
+    if config.restart_checkpoint.enabled:
+        checkpoint_state = load_checkpoint(config, communicator)
+        mesh = checkpoint_state.mesh
+        spaces = make_spaces(mesh, config)
+        displacement_state = checkpoint_state.displacement
+        damage_state = checkpoint_state.damage
+        history_state = checkpoint_state.history
+        time_index = checkpoint_state.time_index
+        outer_iteration = checkpoint_state.outer_iteration
+        solve_error = checkpoint_state.solve_error
+        final_displacement = displacement_state
+        mprint(
+            communicator,
+            "Restarted from checkpoint at step {}: {}".format(
+                time_index, config.restart_checkpoint_path
+            ),
+        )
+    else:
+        spaces = make_spaces(mesh, config)
+        displacement_state, damage_state, history_state = _make_state(spaces)
+        time_index = 0
+        outer_iteration = 0
+        solve_error = 1.0
+        final_displacement = None
 
     output_file = _prepare_output(config, communicator)
     while solve_error > config.solver.outer_tolerance:
@@ -157,6 +253,19 @@ def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
         time_index += 1
         outer_iteration += 1
 
+        if config.write_checkpoint.enabled:
+            write_checkpoint(
+                mesh,
+                displacement_state,
+                damage_state,
+                history_state,
+                time_index,
+                outer_iteration,
+                solve_error,
+                config,
+                communicator,
+            )
+
         memory_gb = process.memory_info().rss / (1024 ** 3)
         total_memory_gb = MPI.sum(communicator, memory_gb)
 
@@ -172,6 +281,7 @@ def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
                 spaces.displacement.dim() + spaces.damage.dim(),
             ),
         )
+    output_file.close()
     return RunResult(
         mesh=mesh,
         damage=damage_state,

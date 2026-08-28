@@ -122,6 +122,12 @@ class OutputConfig:
 
 
 @dataclass(frozen=True)
+class CheckpointConfig:
+    enabled: bool
+    filename: str
+
+
+@dataclass(frozen=True)
 class LoggingConfig:
     level: str
     print_initial_hmin: bool
@@ -144,6 +150,8 @@ class SimulationConfig:
     adaptivity: AdaptivityConfig
     solver: SolverConfig
     output: OutputConfig
+    write_checkpoint: CheckpointConfig
+    restart_checkpoint: CheckpointConfig
     logging: LoggingConfig
 
     @property
@@ -157,6 +165,14 @@ class SimulationConfig:
     @property
     def output_path(self) -> Path:
         return self.output_directory / self.output.filename
+
+    @property
+    def write_checkpoint_path(self) -> Path:
+        return self.resolve_path(self.write_checkpoint.filename)
+
+    @property
+    def restart_checkpoint_path(self) -> Path:
+        return self.resolve_path(self.restart_checkpoint.filename)
 
     @property
     def water_height(self) -> float:
@@ -228,6 +244,12 @@ def load_config(filename: str = "input.toml") -> SimulationConfig:
     solver_data = _section(data, "solver")
     output_data = _section(data, "output")
     logging_data = _section(data, "logging")
+    write_checkpoint_data = data.get("write_checkpoint", {})
+    restart_checkpoint_data = data.get("restart_checkpoint", {})
+    if not isinstance(write_checkpoint_data, dict):
+        raise ValueError("[write_checkpoint] must be a TOML table.")
+    if not isinstance(restart_checkpoint_data, dict):
+        raise ValueError("[restart_checkpoint] must be a TOML table.")
 
     boundary_rows = data.get("boundary_conditions", [])
     if not isinstance(boundary_rows, list):
@@ -323,6 +345,18 @@ def load_config(filename: str = "input.toml") -> SimulationConfig:
             rewrite_function_mesh=bool(output_data.get("rewrite_function_mesh", True)),
             flush_output=bool(output_data.get("flush_output", True)),
         ),
+        write_checkpoint=CheckpointConfig(
+            enabled=bool(write_checkpoint_data.get("enabled", False)),
+            filename=str(
+                write_checkpoint_data.get(
+                    "filename", str(Path(output_data["directory"]) / "checkpoint.h5")
+                )
+            ),
+        ),
+        restart_checkpoint=CheckpointConfig(
+            enabled=bool(restart_checkpoint_data.get("enabled", False)),
+            filename=str(restart_checkpoint_data.get("filename", "checkpoint.h5")),
+        ),
         logging=LoggingConfig(
             level=str(logging_data.get("level", "ERROR")).upper(),
             print_initial_hmin=bool(logging_data.get("print_initial_hmin", True)),
@@ -372,6 +406,10 @@ def validate_config(config: SimulationConfig) -> None:
         raise ValueError("output.write_every must be at least 1.")
     if config.logging.garbage_collect_every < 0:
         raise ValueError("logging.garbage_collect_every cannot be negative.")
+    if config.write_checkpoint.enabled and not config.write_checkpoint.filename:
+        raise ValueError("write_checkpoint.filename cannot be empty when enabled.")
+    if config.restart_checkpoint.enabled and not config.restart_checkpoint.filename:
+        raise ValueError("restart_checkpoint.filename cannot be empty when enabled.")
 
     for condition in config.boundary_conditions:
         if condition.type != "dirichlet":

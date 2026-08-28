@@ -27,11 +27,12 @@ critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
 
 [write_checkpoint]
-enabled = false
+enabled = true
+filename = "./output/06/checkpoint.h5"
 
 [restart_checkpoint]
-enabled = false
-filename = "./output/24/checkpoint.h5"
+enabled = true
+filename = "./output/06/checkpoint.h5"
 
 [geometry]
 Lx = 500.0

@@ -28,6 +28,7 @@ residual_stiffness = 1.0e-4
 
 [write_checkpoint]
 enabled = true
+filename = "./output/24/checkpoint.h5"
 
 [restart_checkpoint]
 enabled = false
