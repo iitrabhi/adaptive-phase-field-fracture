@@ -1,8 +1,8 @@
 [problem]
-name = "3D glacier two-crevasse interaction, S=50 m"
+name = "3D glacier RAMR strong scaling, 1 MPI process"
 
 [mesh]
-path = "../../data/mesh/05/Lx500_2C_S50.xdmf"
+path = "../../data/mesh/10/Lx500_1C_NA_4M.xdmf"
 
 [adaptivity]
 enabled = true
@@ -95,7 +95,7 @@ outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
 
 [output]
-directory = "./output/12/"
+directory = "./output/17/"
 filename = "output.xdmf"
 write_every = 1
 write_damage = true
