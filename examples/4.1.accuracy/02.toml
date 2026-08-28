@@ -21,7 +21,7 @@ degree = 1
 
 [fracture]
 length_scale = 10.0
-energy_threshold = 5
+energy_threshold = 5.0
 zeta = 1.0
 critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
