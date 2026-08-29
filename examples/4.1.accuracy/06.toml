@@ -7,7 +7,7 @@ path = "../../data/mesh/02/Lx500_1C_AD.xdmf"
 [adaptivity]
 enabled = true
 target_hmin = 2.5
-damage_threshold = 0.6
+damage_threshold = 0.2
 
 [loads.hydrostatic]
 enabled = false
@@ -27,7 +27,7 @@ critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
 
 [write_checkpoint]
-enabled = false
+enabled = true
 filename = "./output/06/checkpoint.h5"
 
 [restart_checkpoint]
@@ -88,9 +88,9 @@ component = 1
 value = 0.0
 
 [solver]
-linear_solver = "gmres"
+linear_solver = "cg"
 preconditioner = "hypre_euclid"
-projection_linear_solver = "gmres"
+projection_linear_solver = "cg"
 projection_preconditioner = "hypre_euclid"
 outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
