@@ -7,7 +7,7 @@ path = "../../data/mesh/02/Lx500_1C_AD.xdmf"
 [adaptivity]
 enabled = true
 target_hmin = 1.25
-damage_threshold = 0.2
+damage_threshold = 0.6
 
 [loads.hydrostatic]
 enabled = true

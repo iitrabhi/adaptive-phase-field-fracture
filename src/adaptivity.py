@@ -73,7 +73,7 @@ def get_markers(
     projected_damage = mproject(damage, history_space, config)
     marker.array()[projected_damage.vector()[:] > config.adaptivity.damage_threshold] = True
 
-    cell_size = Circumradius(mesh)/3.0
+    cell_size = Circumradius(mesh)/2.0
     cell_size_values = mproject(cell_size, history_space, config).vector()[:]
     marker.array()[cell_size_values < config.adaptivity.target_hmin] = False
 
