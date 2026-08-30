@@ -88,9 +88,9 @@ component = 1
 value = 0.0
 
 [solver]
-linear_solver = "cg"
+linear_solver = "gmres"
 preconditioner = "hypre_euclid"
-projection_linear_solver = "cg"
+projection_linear_solver = "gmres"
 projection_preconditioner = "hypre_euclid"
 outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
