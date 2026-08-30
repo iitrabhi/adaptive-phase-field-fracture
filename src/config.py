@@ -113,6 +113,8 @@ class SolverConfig:
 class OutputConfig:
     directory: str
     filename: str
+    write_csv: bool
+    csv_filename: str
     write_every: int
     write_damage: bool
     write_displacement: bool
@@ -165,6 +167,10 @@ class SimulationConfig:
     @property
     def output_path(self) -> Path:
         return self.output_directory / self.output.filename
+
+    @property
+    def csv_output_path(self) -> Path:
+        return self.output_directory / self.output.csv_filename
 
     @property
     def write_checkpoint_path(self) -> Path:
@@ -338,6 +344,8 @@ def load_config(filename: str = "input.toml") -> SimulationConfig:
         output=OutputConfig(
             directory=str(output_data["directory"]),
             filename=str(output_data.get("filename", "output.xdmf")),
+            write_csv=bool(output_data.get("write_csv", True)),
+            csv_filename=str(output_data.get("csv_filename", "metrics.csv")),
             write_every=int(output_data.get("write_every", 1)),
             write_damage=bool(output_data.get("write_damage", True)),
             write_displacement=bool(output_data.get("write_displacement", False)),
@@ -404,6 +412,8 @@ def validate_config(config: SimulationConfig) -> None:
         raise ValueError("loads.hydrostatic.component must be 0, 1, or 2.")
     if config.output.write_every < 1:
         raise ValueError("output.write_every must be at least 1.")
+    if config.output.write_csv and not config.output.csv_filename:
+        raise ValueError("output.csv_filename cannot be empty when CSV output is enabled.")
     if config.logging.garbage_collect_every < 0:
         raise ValueError("logging.garbage_collect_every cannot be negative.")
     if config.write_checkpoint.enabled and not config.write_checkpoint.filename:

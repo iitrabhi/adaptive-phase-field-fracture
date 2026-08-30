@@ -98,6 +98,8 @@ norm_zero_tolerance = 1.0e-14
 [output]
 directory = "./output/13/"
 filename = "output.xdmf"
+write_csv = true
+csv_filename = "metrics.csv"
 write_every = 1
 write_damage = true
 write_displacement = true

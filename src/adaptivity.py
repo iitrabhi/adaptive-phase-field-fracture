@@ -14,6 +14,7 @@ import numpy as np
 import psutil
 
 from .config import SimulationConfig
+from .metrics import MetricsCsvWriter
 from .solver import FunctionSpaces, SolveResult, make_spaces, mproject, solve_problem
 
 
@@ -203,6 +204,7 @@ def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
         final_displacement = None
 
     output_file = _prepare_output(config, communicator)
+    metrics_file = MetricsCsvWriter(config, communicator)
     while solve_error > config.solver.outer_tolerance:
         if config.adaptivity.enabled:
             adaptivity_converged = False
@@ -270,6 +272,18 @@ def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
 
         memory_gb = process.memory_info().rss / (1024 ** 3)
         total_memory_gb = MPI.sum(communicator, memory_gb)
+        global_hmin = MPI.min(communicator, mesh.hmin())
+        ndof = spaces.displacement.dim() + spaces.damage.dim()
+        elapsed_seconds = time.time() - start_time
+
+        metrics_file.write(
+            step=time_index,
+            ram_gb=total_memory_gb,
+            hmin=global_hmin,
+            ndof=ndof,
+            elapsed_seconds=elapsed_seconds,
+            ms_error=solve_error,
+        )
 
         mprint(
             communicator,
@@ -277,13 +291,14 @@ def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
             "ndof: {5:6}, time: {3:6.0f}, ms_err: {4:6.2e}".format(
                 time_index,
                 total_memory_gb,
-                MPI.min(communicator, mesh.hmin()),
-                time.time() - start_time,
+                global_hmin,
+                elapsed_seconds,
                 solve_error,
-                spaces.displacement.dim() + spaces.damage.dim(),
+                ndof,
             ),
         )
     output_file.close()
+    metrics_file.close()
     return RunResult(
         mesh=mesh,
         damage=damage_state,
