@@ -7,7 +7,7 @@ path = "../../data/mesh/02/Lx500_1C_AD.xdmf"
 [adaptivity]
 enabled = true
 target_hmin = 2.5
-damage_threshold = 0.2
+damage_threshold = 0.1
 
 [loads.hydrostatic]
 enabled = false
@@ -21,8 +21,8 @@ degree = 1
 
 [fracture]
 length_scale = 10.0
-energy_threshold = 10.0
-zeta = 2.0
+energy_threshold = 7.0
+zeta = 1.5
 critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
 
