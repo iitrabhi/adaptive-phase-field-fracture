@@ -223,12 +223,25 @@ def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
                 damage_new.assign(transfer_to_space(damage_state, spaces_new.damage))
                 history_new.assign(transfer_to_space(history_state, spaces_new.history))
 
+                # Drop references to objects tied to the old mesh after all
+                # transfers to the refined mesh have completed.
+                del spaces
+                del displacement_state, damage_state, history_state
+                del marker
+                gc.collect()
+
                 mesh = mesh_new
                 spaces = spaces_new
                 displacement_state = displacement_new
                 damage_state = damage_new
                 history_state = history_new
                 refinement_iteration += 1
+
+                # A non-final solve result is no longer needed once its
+                # refinement step has been completed.
+                if not adaptivity_converged:
+                    del last_result
+                gc.collect()
 
             damage_state.assign(transfer_to_space(last_result.damage, spaces.damage))
             history_state.assign(transfer_to_space(last_result.history, spaces.history))
@@ -256,6 +269,13 @@ def run_adaptive(mesh, config: SimulationConfig, communicator) -> RunResult:
 
         time_index += 1
         outer_iteration += 1
+
+        garbage_collect_every = config.logging.garbage_collect_every
+        if (
+            garbage_collect_every
+            and outer_iteration % garbage_collect_every == 0
+        ):
+            gc.collect()
 
         if config.write_checkpoint.enabled:
             write_checkpoint(
