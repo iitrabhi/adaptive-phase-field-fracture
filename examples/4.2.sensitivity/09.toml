@@ -27,7 +27,7 @@ critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
 
 [write_checkpoint]
-enabled = false
+enabled = true
 filename = "./output/09/checkpoint.h5"
 
 [restart_checkpoint]
