@@ -7,7 +7,7 @@ path = "../../data/mesh/08/Lx500_5C_S70.xdmf"
 [adaptivity]
 enabled = true
 target_hmin = 2.5
-damage_threshold = 0.2
+damage_threshold = 0.1
 
 [loads.hydrostatic]
 enabled = true
@@ -32,7 +32,7 @@ filename = "./output/15/checkpoint.h5"
 
 [restart_checkpoint]
 enabled = false
-filename = "./output/24/checkpoint.h5"
+filename = "./output/15/checkpoint.h5"
 
 [geometry]
 Lx = 500.0

@@ -140,8 +140,8 @@ def solve_problem(
 
     displacement_solver.solve()
     projected_energy = mproject(get_energy(displacement_new, damage_new, spaces.history, config),spaces.history,config)
-    # history.vector()[:] = np.maximum(projected_energy.vector()[:],history.vector()[:])
-    history.vector()[:] = projected_energy.vector()[:]
+    history.vector()[:] = np.maximum(projected_energy.vector()[:],history.vector()[:])
+    # history.vector()[:] = projected_energy.vector()[:]
     damage_solver.solve()
     damage_new.vector()[:] = np.clip(damage_new.vector()[:], 0.0, 1.0)
 
