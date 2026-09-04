@@ -22,7 +22,7 @@ degree = 1
 [fracture]
 length_scale = 10.0
 energy_threshold = 5.0
-zeta = 1.5
+zeta = 2.0
 critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
 
@@ -32,7 +32,7 @@ filename = "./output/05/checkpoint.h5"
 
 [restart_checkpoint]
 enabled = false
-filename = "./output/24/checkpoint.h5"
+filename = "./output/05/checkpoint.h5"
 
 [geometry]
 Lx = 500.0
