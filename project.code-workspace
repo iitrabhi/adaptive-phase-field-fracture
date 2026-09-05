@@ -9,7 +9,7 @@
 		"notebook.markup.fontSize": 18,
 		"notebook.markup.fontFamily": "Bitter",
 		"workbench.colorCustomizations": {
-			"foreground": "#949494"
+			"foreground": "#949494",
 		},
 		"workbench.colorTheme": "Mariana Pro (Cool)"
 	}
