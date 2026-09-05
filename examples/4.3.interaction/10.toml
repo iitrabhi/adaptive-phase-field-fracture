@@ -32,7 +32,7 @@ filename = "./output/10/checkpoint.h5"
 
 [restart_checkpoint]
 enabled = false
-filename = "./output/24/checkpoint.h5"
+filename = "./output/10/checkpoint.h5"
 
 [geometry]
 Lx = 500.0
