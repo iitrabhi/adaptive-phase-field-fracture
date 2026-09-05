@@ -1,13 +1,13 @@
 [problem]
-name = "3D glacier RAMR strong scaling, 1 MPI process"
+name = "3D glacier five-crevasse competitive growth, S=70 m"
 
 [mesh]
-path = "../../data/mesh/10/Lx500_1C_NA_4M.xdmf"
+path = "../../data/mesh/08/Lx500_5C_S70.xdmf"
 
 [adaptivity]
 enabled = true
 target_hmin = 2.5
-damage_threshold = 0.2
+damage_threshold = 0.1
 
 [loads.hydrostatic]
 enabled = true
@@ -21,18 +21,18 @@ degree = 1
 
 [fracture]
 length_scale = 10.0
-energy_threshold = 1.0
-zeta = 2.0
+energy_threshold = 0.5
+zeta = 1.5
 critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
 
 [write_checkpoint]
 enabled = true
-filename = "./output/17/checkpoint.h5"
+filename = "./output/02/checkpoint.h5"
 
 [restart_checkpoint]
 enabled = false
-filename = "./output/24/checkpoint.h5"
+filename = "./output/02/checkpoint.h5"
 
 [geometry]
 Lx = 500.0
@@ -96,7 +96,7 @@ outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
 
 [output]
-directory = "./output/17/"
+directory = "./output/02/"
 filename = "output.xdmf"
 write_csv = true
 csv_filename = "metrics.csv"

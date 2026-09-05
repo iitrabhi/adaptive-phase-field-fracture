@@ -1,12 +1,12 @@
 [problem]
-name = "3D glacier phase-field length-scale sensitivity, ell=10 m"
+name = "3D glacier phase-field length-scale sensitivity, ell=20 m"
 
 [mesh]
 path = "../../data/mesh/02/Lx500_1C_AD.xdmf"
 
 [adaptivity]
 enabled = true
-target_hmin = 2.5
+target_hmin = 5.0
 damage_threshold = 0.1
 
 [loads.hydrostatic]
@@ -20,19 +20,19 @@ sign = -1.0
 degree = 1
 
 [fracture]
-length_scale = 10.0
+length_scale = 20.0
 energy_threshold = 0.5
-zeta = 1.5
+zeta = 4.0
 critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
 
 [write_checkpoint]
 enabled = true
-filename = "./output/08/checkpoint.h5"
+filename = "./output/03/checkpoint.h5"
 
 [restart_checkpoint]
 enabled = false
-filename = "./output/08/checkpoint.h5"
+filename = "./output/03/checkpoint.h5"
 
 [geometry]
 Lx = 500.0
@@ -96,7 +96,7 @@ outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
 
 [output]
-directory = "./output/08/"
+directory = "./output/03/"
 filename = "output.xdmf"
 write_csv = true
 csv_filename = "metrics.csv"

@@ -1,8 +1,8 @@
 [problem]
-name = "3D glacier two-crevasse interaction, S=25 m"
+name = "3D glacier opposing ten-crevasse competitive growth, S=70 m"
 
 [mesh]
-path = "../../data/mesh/04/Lx500_2C_S25.xdmf"
+path = "../../data/mesh/09/Lx500_10C_S70.xdmf"
 
 [adaptivity]
 enabled = true
@@ -28,11 +28,11 @@ residual_stiffness = 1.0e-4
 
 [write_checkpoint]
 enabled = true
-filename = "./output/11/checkpoint.h5"
+filename = "./output/03/checkpoint.h5"
 
 [restart_checkpoint]
-enabled = true
-filename = "./output/11/checkpoint.h5"
+enabled = false
+filename = "./output/03/checkpoint.h5"
 
 [geometry]
 Lx = 500.0
@@ -96,7 +96,7 @@ outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
 
 [output]
-directory = "./output/11/"
+directory = "./output/03/"
 filename = "output.xdmf"
 write_csv = true
 csv_filename = "metrics.csv"

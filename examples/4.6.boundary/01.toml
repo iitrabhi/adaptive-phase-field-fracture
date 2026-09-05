@@ -28,11 +28,11 @@ residual_stiffness = 1.0e-4
 
 [write_checkpoint]
 enabled = true
-filename = "./output/24/checkpoint.h5"
+filename = "./output/01/checkpoint.h5"
 
 [restart_checkpoint]
 enabled = false
-filename = "./output/24/checkpoint.h5"
+filename = "./output/01/checkpoint.h5"
 
 [geometry]
 Lx = 1500.0
@@ -103,7 +103,7 @@ outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
 
 [output]
-directory = "./output/24/"
+directory = "./output/01/"
 filename = "output.xdmf"
 write_csv = true
 csv_filename = "metrics.csv"
