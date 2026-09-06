@@ -17,30 +17,30 @@ RUN_4_1_04=0   # adaptive, hw=0.5H
 RUN_4_1_05=0   # adaptive, hw=0.25H
 RUN_4_1_06=0   # adaptive, hw=0.0H
 RUN_4_1_07=0   # non-adaptive reference, hw=0.5H  (globalally refined)
-RUN_4_1_08=0   # non-adaptive reference, hw=0.25H (globalally refined)
-RUN_4_1_09=0   # non-adaptive reference, hw=0.0H  (globalally refined)
+RUN_4_1_08=1   # non-adaptive reference, hw=0.25H (globalally refined)
+RUN_4_1_09=1   # non-adaptive reference, hw=0.0H  (globalally refined)
 
 # ---------------------------------------------------------------------------
 # 4.2 Sensitivity
 # ---------------------------------------------------------------------------
-RUN_4_2_01=0   # length-scale sensitivity, ell=5 m
+RUN_4_2_01=1   # length-scale sensitivity, ell=5 m
 RUN_4_2_02=0   # length-scale sensitivity, ell=10 m
 RUN_4_2_03=0   # length-scale sensitivity, ell=20 m
 
 # ---------------------------------------------------------------------------
 # 4.3 Interaction
 # ---------------------------------------------------------------------------
-RUN_4_3_01=1   # two-crevasse interaction, S=15 m
-RUN_4_3_02=1   # two-crevasse interaction, S=25 m
-RUN_4_3_03=1   # two-crevasse interaction, S=50 m
-RUN_4_3_04=1   # two-crevasse interaction, S=100 m
+RUN_4_3_01=0   # two-crevasse interaction, S=15 m
+RUN_4_3_02=0   # two-crevasse interaction, S=25 m
+RUN_4_3_03=0   # two-crevasse interaction, S=50 m
+RUN_4_3_04=0   # two-crevasse interaction, S=100 m
 
 # ---------------------------------------------------------------------------
 # 4.4 Competitive
 # ---------------------------------------------------------------------------
-RUN_4_4_01=1   # five-crevasse competitive growth, S=50 m
-RUN_4_4_02=1   # five-crevasse competitive growth, S=70 m
-RUN_4_4_03=1   # ten-crevasse competitive growth,  S=70 m
+RUN_4_4_01=0   # five-crevasse competitive growth, S=50 m
+RUN_4_4_02=0   # five-crevasse competitive growth, S=70 m
+RUN_4_4_03=0   # ten-crevasse competitive growth,  S=70 m
 
 # ---------------------------------------------------------------------------
 # 4.5 Parallel
