@@ -17,6 +17,7 @@ from .config import SimulationConfig
 from .metrics import MetricsCsvWriter
 from .solver import FunctionSpaces, SolveResult, make_spaces, mproject, solve_problem
 
+parameters["refinement_algorithm"] = "plaza_with_parent_facets"
 
 @dataclass
 class RunResult:

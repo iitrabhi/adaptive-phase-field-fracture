@@ -2,7 +2,7 @@
 name = "Kilometer-scale 3D glacier 30-crevasse simulation with fixed back boundary"
 
 [mesh]
-path = "../../data/mesh/11/Lx1500_30C.xdmf"
+path = "../../data/mesh/11/Lx1500_30C_S90.xdmf"
 
 [adaptivity]
 enabled = true
@@ -22,7 +22,7 @@ degree = 1
 [fracture]
 length_scale = 5.0
 energy_threshold = 10.0
-zeta = 2.0
+zeta = 0.75
 critical_stress = 0.1185e6
 residual_stiffness = 1.0e-4
 
@@ -31,7 +31,7 @@ enabled = true
 filename = "./output/01/checkpoint.h5"
 
 [restart_checkpoint]
-enabled = false
+enabled = 1
 filename = "./output/01/checkpoint.h5"
 
 [geometry]
@@ -92,6 +92,13 @@ name = "back_fixed_x"
 boundary = "back"
 type = "dirichlet"
 component = 0
+value = 0.0
+
+[[boundary_conditions]]
+name = "back_fixed_z"
+boundary = "back"
+type = "dirichlet"
+component = 2
 value = 0.0
 
 [solver]
