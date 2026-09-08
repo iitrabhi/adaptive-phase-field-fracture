@@ -10,12 +10,12 @@
 # ---------------------------------------------------------------------------
 # 4.1 Accuracy
 # ---------------------------------------------------------------------------
-RUN_4_1_01=1   # non-adaptive reference, hw=0.5H  (locally refined)
-RUN_4_1_02=1   # non-adaptive reference, hw=0.25H (locally refined)
-RUN_4_1_03=1   # non-adaptive reference, hw=0.0H  (locally refined)
-RUN_4_1_04=1   # adaptive, hw=0.5H
-RUN_4_1_05=1   # adaptive, hw=0.25H
-RUN_4_1_06=1   # adaptive, hw=0.0H
+RUN_4_1_01=0   # non-adaptive reference, hw=0.5H  (locally refined)
+RUN_4_1_02=0   # non-adaptive reference, hw=0.25H (locally refined)
+RUN_4_1_03=0   # non-adaptive reference, hw=0.0H  (locally refined)
+RUN_4_1_04=0   # adaptive, hw=0.5H
+RUN_4_1_05=0   # adaptive, hw=0.25H
+RUN_4_1_06=0   # adaptive, hw=0.0H
 RUN_4_1_07=0   # non-adaptive reference, hw=0.5H  (globalally refined)
 RUN_4_1_08=0   # non-adaptive reference, hw=0.25H (globalally refined)
 RUN_4_1_09=0   # non-adaptive reference, hw=0.0H  (globalally refined)
@@ -23,9 +23,9 @@ RUN_4_1_09=0   # non-adaptive reference, hw=0.0H  (globalally refined)
 # ---------------------------------------------------------------------------
 # 4.2 Sensitivity
 # ---------------------------------------------------------------------------
-RUN_4_2_01=0   # length-scale sensitivity, ell=5 m
+RUN_4_2_01=1   # length-scale sensitivity, ell=5 m
 RUN_4_2_02=0   # length-scale sensitivity, ell=10 m
-RUN_4_2_03=0   # length-scale sensitivity, ell=20 m
+RUN_4_2_03=1   # length-scale sensitivity, ell=20 m
 
 # ---------------------------------------------------------------------------
 # 4.3 Interaction
