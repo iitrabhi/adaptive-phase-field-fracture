@@ -102,10 +102,10 @@ component = 2
 value = 0.0
 
 [solver]
-linear_solver = "gmres"
-preconditioner = "hypre_euclid"
-projection_linear_solver = "gmres"
-projection_preconditioner = "hypre_euclid"
+linear_solver = "cg"
+preconditioner = "jacobi"
+projection_linear_solver = "cg"
+projection_preconditioner = "jacobi"
 outer_tolerance = 1.0e-4
 norm_zero_tolerance = 1.0e-14
 

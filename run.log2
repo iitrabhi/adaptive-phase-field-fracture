@@ -8,24 +8,28 @@ mechanism if one is available. This may result in lower performance.
 
   Local host: VUSELNX-75QT0T2
 --------------------------------------------------------------------------
-[VUSELNX-75QT0T2.vuds.vanderbilt.edu:1253320] 15 more processes have sent help message help-btl-vader.txt / cma-permission-denied
-[VUSELNX-75QT0T2.vuds.vanderbilt.edu:1253320] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
-Restarted from checkpoint at step 19: /home/abhi/adaptive-phase-field-fracture/examples/4.6.boundary/output/01/checkpoint.h5
-step:  20, ram:  13.42 GB, hmin:  0.17, ndof: 3872780, time:    223, ms_err: 1.02e-01
-step:  21, ram:  14.99 GB, hmin:  0.17, ndof: 3957688, time:    405, ms_err: 1.02e-01
-step:  22, ram:  15.29 GB, hmin:  0.17, ndof: 4047380, time:    585, ms_err: 1.01e-01
-step:  23, ram:  15.31 GB, hmin:  0.17, ndof: 4135280, time:    843, ms_err: 1.01e-01
-step:  24, ram:  15.50 GB, hmin:  0.17, ndof: 4219340, time:   1114, ms_err: 9.95e-02
-step:  25, ram:  15.32 GB, hmin:  0.17, ndof: 4300060, time:   1307, ms_err: 9.83e-02
-step:  26, ram:  15.25 GB, hmin:  0.17, ndof: 4393224, time:   1509, ms_err: 9.66e-02
-step:  27, ram:  15.47 GB, hmin:  0.17, ndof: 4484564, time:   1680, ms_err: 9.50e-02
-step:  28, ram:  15.83 GB, hmin:  0.17, ndof: 4572476, time:   1885, ms_err: 9.41e-02
-step:  29, ram:  15.87 GB, hmin:  0.17, ndof: 4658736, time:   2096, ms_err: 9.25e-02
-step:  30, ram:  15.86 GB, hmin:  0.17, ndof: 4751132, time:   2319, ms_err: 9.08e-02
-step:  31, ram:  15.91 GB, hmin:  0.17, ndof: 4839240, time:   2502, ms_err: 8.96e-02
-step:  32, ram:  16.29 GB, hmin:  0.17, ndof: 4933704, time:   2730, ms_err: 8.79e-02
-step:  33, ram:  16.32 GB, hmin:  0.17, ndof: 5018592, time:   2920, ms_err: 8.65e-02
-step:  34, ram:  16.42 GB, hmin:  0.17, ndof: 5104808, time:   3157, ms_err: 8.52e-02
-step:  35, ram:  16.69 GB, hmin:  0.17, ndof: 5201160, time:   3403, ms_err: 8.41e-02
-step:  36, ram:  16.88 GB, hmin:  0.17, ndof: 5298964, time:   3616, ms_err: 8.26e-02
-step:  37, ram:  16.80 GB, hmin:  0.17, ndof: 5381464, time:   3911, ms_err: 8.15e-02
+[VUSELNX-75QT0T2.vuds.vanderbilt.edu:1574918] 19 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[VUSELNX-75QT0T2.vuds.vanderbilt.edu:1574918] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+Restarted from checkpoint at step 132: /home/abhi/adaptive-phase-field-fracture/examples/4.6.boundary/output/01/checkpoint.h5
+step: 133, ram:  30.53 GB, hmin:  0.17, ndof: 10209588, time:    744, ms_err: 1.63e-02
+step: 134, ram:  33.04 GB, hmin:  0.17, ndof: 10227672, time:   1186, ms_err: 1.60e-02
+step: 135, ram:  34.58 GB, hmin:  0.17, ndof: 10251468, time:   1774, ms_err: 1.58e-02
+step: 136, ram:  34.46 GB, hmin:  0.17, ndof: 10268080, time:   2219, ms_err: 1.55e-02
+step: 137, ram:  34.51 GB, hmin:  0.17, ndof: 10286960, time:   2665, ms_err: 1.53e-02
+step: 138, ram:  35.11 GB, hmin:  0.17, ndof: 10304376, time:   3401, ms_err: 1.52e-02
+step: 139, ram:  34.72 GB, hmin:  0.17, ndof: 10321348, time:   3851, ms_err: 1.48e-02
+step: 140, ram:  34.55 GB, hmin:  0.17, ndof: 10340668, time:   4877, ms_err: 1.47e-02
+step: 141, ram:  34.24 GB, hmin:  0.17, ndof: 10360232, time:   5327, ms_err: 1.46e-02
+step: 142, ram:  34.49 GB, hmin:  0.17, ndof: 10375860, time:   5924, ms_err: 1.43e-02
+step: 143, ram:  34.11 GB, hmin:  0.17, ndof: 10394940, time:   6521, ms_err: 1.41e-02
+step: 144, ram:  34.55 GB, hmin:  0.17, ndof: 10409908, time:   7121, ms_err: 1.39e-02
+step: 145, ram:  34.52 GB, hmin:  0.17, ndof: 10428340, time:   7575, ms_err: 1.37e-02
+step: 146, ram:  34.65 GB, hmin:  0.17, ndof: 10444840, time:   8176, ms_err: 1.34e-02
+step: 147, ram:  34.43 GB, hmin:  0.17, ndof: 10462260, time:   8929, ms_err: 1.33e-02
+step: 148, ram:  34.39 GB, hmin:  0.17, ndof: 10479024, time:   9533, ms_err: 1.33e-02
+step: 149, ram:  34.28 GB, hmin:  0.17, ndof: 10495932, time:   9996, ms_err: 1.31e-02
+step: 150, ram:  34.38 GB, hmin:  0.17, ndof: 10513260, time:  10457, ms_err: 1.29e-02
+step: 151, ram:  34.42 GB, hmin:  0.17, ndof: 10525152, time:  10918, ms_err: 1.28e-02
+step: 152, ram:  34.52 GB, hmin:  0.17, ndof: 10541388, time:  11528, ms_err: 1.27e-02
+step: 153, ram:  34.65 GB, hmin:  0.17, ndof: 10561068, time:  12287, ms_err: 1.23e-02
+step: 154, ram:  34.78 GB, hmin:  0.17, ndof: 10575292, time:  12750, ms_err: 1.22e-02
